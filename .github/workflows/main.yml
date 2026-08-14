@@ -38,11 +38,11 @@ jobs:
           buildozer init
       - name: Configure buildozer.spec
         run: |
-          sed -i "s/^title = .*/title = My school Timetable/" buildozer.spec
-          sed -i "s/^package.name = .*/package.name = timetable/" buildozer.spec
-          sed -i "s/^package.domain = .*/package.domain = org.example/" buildozer.spec
-          sed -i "s/^requirments = .*/requirments = python3,kivy" buildozer.spec
-          sed -i "s/^orientation = .*/orientation = portrait/" buildozer.spec
+          sed -i `s/^title = .*/title = My school Timetable/' buildozer.spec
+          sed -i `s/^package.name = .*/package.name = timetable/' buildozer.spec
+          sed -i `s/^package.domain = .*/package.domain = org.example/' buildozer.spec
+          sed -i `s/^requirments = .*/requirments = python3,kivy' buildozer.spec
+          sed -i `s/^orientation = .*/orientation = portrait/' buildozer.spec
       - name:  Build APK
         run: |
           buildozer android debug

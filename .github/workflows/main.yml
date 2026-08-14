@@ -32,8 +32,7 @@ jobs:
             libffi-dev
       - name: Install Buildozer
         run: |
-          python -m pip install --upgrade pip
-          pip install buildozer cython==0.29.19
+          python -m pip install buildozer cython==0.29.19
       - name: Create buildozer.spec
         run: |
           buildozer init

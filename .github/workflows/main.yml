@@ -32,13 +32,13 @@ jobs:
             libffi-dev
       - name: Install Buildozer
         run: |
-          python -m pip install buildozer cython==0.29.19
+          python -m pip install buildozer cython
       - name: Create buildozer.spec
         run: |
           buildozer init
       - name: Configure buildozer.spec
         run: |
-          sed -i 's/^title = .*/title = main/' buildozer.spec
+          sed -i 's/^title = .*/title = My school Timetable/' buildozer.spec
           sed -i 's/^package.name = .*/package.name = timetable/' buildizer.spec
           sed -i 's/^package.domain = .*/package.domain = org.example/' buildozer.spec
           sed -i 's/^requirments = .*/requirments = python3,kivy' buildozer.spec

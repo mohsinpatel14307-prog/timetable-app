@@ -1,0 +1,54 @@
+name: Build Android APK
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install system dependencies
+        run: 
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            git \
+            zip \
+            unzip \
+            openjdk-17-jdk \
+            autoconf \
+            libtool \
+            pkg-config \
+            zlib1g-dev \
+            libncurses5-dev \ 
+            libncursesw5-dev \
+            cmake \
+            libffi-dev
+      - name: Install Buildozer
+        run: |
+          python -m pip install --upgrade pip
+          pip install buildozer cython==0.29.19
+      - name: Create buildozer.spec
+        run: |
+          buildozer init
+      - name: Configure buildozer.spec
+        run: |
+          sed -i 's/^title = .*/title = My school Timetable/' buildozer.spec
+          sed -i 's/^package.name = .*/package.name = timetable/' buildizer.spec
+          sed -i 's/^package.domain = .*/package.domain = org.example/' buildozer.spec
+          sed -i 's/^requirments = .*/orientation = portrait/' buildozer.spec
+      - name:  Build APK
+        run: |
+          buildozer android debug
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: timetable-apk
+          path: bin/*.apk

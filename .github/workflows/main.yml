@@ -45,7 +45,7 @@ jobs:
           content = re.sub(r'(?m)^title = .*','title = My school Timetable',content)
           content = re.sub(r'(?m)^package.name = .*','package.name = timetable',content)
           content = re.sub(r'(?m)^package.domain = .*','package.domain = org.example',content)
-          content = re.sub(r'(?m)^requirments = .*','requirments = python3==3.11.6,kivy,charset-normalizer==3.3.2',content)
+          content = re.sub(r'(?m)^requirments = .*','requirments = python3==3.11.4,kivy,charset-normalizer==3.3.2',content)
           content = re.sub(r'(?m)^orientation = .*','orientation = portrait',content)
           with open("buildozer.spec","w") as f:
             f.write(content)
